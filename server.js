@@ -23,6 +23,7 @@ app.use((ctx, next) => {
 });
 
 app.use((ctx, next) => {
+
   console.log(ctx.request.body);
 
   const { method } = ctx.request.querystring;
@@ -33,13 +34,13 @@ app.use((ctx, next) => {
     case 'allTickets':
       ctx.response.body = tickets;
       return;
-        // TODO: обработка остальных методов
+    // TODO: обработка остальных методов
     case 'createTicket':
       return;
     default:
       ctx.response.status = 404;
       return;
-    }
+  }
 
 
   ctx.response.body = 'server response';
