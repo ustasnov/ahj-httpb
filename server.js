@@ -30,7 +30,9 @@ const tickets = [
   },
 ];
 
-app.use(koaBody({ urlencoded: true }));
+app.use(koaBody({ 
+  urlencoded: true
+}));
 
 app.use((ctx, next) => {
   if (ctx.request.method !== "OPTIONS") {
@@ -48,19 +50,21 @@ app.use((ctx, next) => {
 
 app.use((ctx, next) => {
 
-  console.log(ctx.request.body);
+  //console.log(ctx.request.body);
   console.log(ctx.request.querystring);
 
   ctx.response.set('Access-Control-Allow-Origin', '*');
-  ctx.response.set('Content-Type', "application/json; charset=utf-8");
+  
 
   const queryParams = querystring.parse(ctx.request.querystring);
   switch (queryParams.method) {
     case 'allTickets':
+      ctx.response.set('Content-Type', "application/json; charset=utf-8");
       ctx.response.body = JSON.stringify(tickets);
       return;
     // TODO: обработка остальных методов
     case 'ticketById':
+      ctx.response.set('Content-Type', "application/json; charset=utf-8");
       const ticket = Array.from(tickets).find((el) => {
         return el.id == queryParams.id;
       });
@@ -71,9 +75,11 @@ app.use((ctx, next) => {
       }
       return;
     case 'createTicket':
-      const {name, description} = ctx.request.body;
       console.log(ctx.request.body);
+      ctx.response.set('Content-Type', "application/json; charset=utf-8");
+      const {name, description} = ctx.request.body;
       console.log(`name: ${ctx.request.body.name}, description: ${ctx.request.body.description}`);
+      ctx.response.body = "{}";
       return;
     default:
       ctx.response.status = 404;
