@@ -6,7 +6,8 @@
   "scripts": {
     "prestart": "npm install",
     "start": "forever server.js",
-    "watch": "forever -w server.js"
+    "watch": "forever -w server.js",
+    "lint": "eslint . --fix"
   },
   "author": "coursar",
   "license": "ISC",
@@ -15,7 +16,12 @@
     "koa": "^2.15.0",
     "koa-body": "^4.2.0",
     "koa-static": "^5.0.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^27.1.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "2.7.1"
   },
   "engines": {
     "node": "10.x"
